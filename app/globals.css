@@ -1,14 +1,28 @@
+/* Tailwind layers (must be first, each ends with a semicolon) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root { --radius: 1rem; }
-body { @apply bg-white text-slate-900; }
+/* Design tokens */
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;   /* slate-900 */
+  --muted: #64748b;/* slate-500 */
+  --brand: #0ea5e9;/* sky-500 */
+}
+
+/* Base */
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Small helpers used by the page */
 .container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
-.card { @apply rounded-3xl border bg-white; }
-.card-content { @apply p-6; }
-.btn { @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium transition; }
-.btn-primary { @apply bg-sky-600 text-white hover:bg-sky-700; }
-.btn-outline { @apply border hover:bg-slate-50; }
-.input { @apply w-full rounded-2xl border px-3 py-2; }
-.textarea { @apply w-full rounded-2xl border px-3 py-2 min-h-[140px]; }
+.section   { @apply py-16 md:py-24; }
+.card      { @apply rounded-2xl border bg-white shadow-sm; }
+
