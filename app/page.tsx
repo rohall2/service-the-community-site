@@ -1,256 +1,295 @@
-"use client";
+// app/page.tsx
+import { Calendar, MapPin, HeartHandshake, Users, Phone, Mail, ArrowRight } from "lucide-react";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { HandHeart, HeartHandshake, Users, Megaphone, Calendar, ArrowRight, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, ShieldCheck, HandCoins } from "lucide-react";
-
-const BRAND = { name: "Service the Community Inc.", tagline: "Neighbors helping neighbors." };
-
-const nav = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Events", href: "#events" },
-  { label: "Board", href: "#board" },
-  { label: "Volunteer", href: "#volunteer" },
-  { label: "Donate", href: "#donate" },
-  { label: "Contact", href: "#contact" },
+const events = [
+  {
+    title: "Angel Tree Gift Giveaway",
+    date: "Dec 18, 2025 • 5:00–7:00 PM",
+    location: "Rochester, NY",
+    description:
+      "Toys for local kids ages 6–12 with support from local law enforcement.",
+  },
+  {
+    title: "Winter Coat & Pantry Drive",
+    date: "Jan 11, 2026 • 10:00 AM–1:00 PM",
+    location: "Rochester, NY",
+    description:
+      "Donate new/gently used coats and shelf-stable items to keep families warm and fed.",
+  },
 ];
 
-const Section = ({ id, children, bg = "bg-white" }:{ id:string, children:React.ReactNode, bg?:string }) => (
-  <section id={id} className={`${bg} py-16 md:py-24`}>{children}</section>
-);
-const Container = ({ children }:{ children:React.ReactNode }) => <div className="container">{children}</div>;
-
-const Header = () => (
-  <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/90 border-b">
-    <Container>
-      <nav className="flex items-center justify-between py-4">
-        <a href="#home" className="flex items-center gap-3 group" aria-label={`${BRAND.name} home`}>
-          <HandHeart className="w-8 h-8 text-sky-600 group-hover:scale-110 transition" />
-          <div className="leading-tight">
-            <div className="font-extrabold tracking-tight text-xl md:text-2xl">{BRAND.name}</div>
-            <div className="text-xs text-slate-500">{BRAND.tagline}</div>
-          </div>
-        </a>
-        <div className="hidden md:flex items-center gap-3">
-          {nav.map((n) => (
-            <a key={n.href} href={n.href} className="px-3 py-2 rounded-lg hover:bg-slate-100 text-sm font-medium">
-              {n.label}
-            </a>
-          ))}
-          <a href="#donate" className="ml-2"><Button className="rounded-2xl">Donate</Button></a>
-        </div>
-      </nav>
-    </Container>
-  </header>
-);
-
-const Hero = () => (
-  <Section id="home" bg="bg-gradient-to-b from-sky-50 to-white">
-    <Container>
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-            We show up for our community—<span className="text-sky-600"> together.</span>
-          </h1>
-          <p className="mt-5 text-lg text-slate-700 max-w-xl">
-            From hot‑meal pop‑ups to youth mentorship and first‑responder engagement, Service the Community Inc. mobilizes neighbors, partners, and resources to meet real needs—fast.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#donate"><Button className="rounded-2xl">Give Now</Button></a>
-            <a href="#volunteer"><Button variant="outline" className="rounded-2xl">Volunteer</Button></a>
-            <a href="#about" className="inline-flex items-center text-sm font-medium group">
-              Learn more <ArrowRight className="ml-1 w-4 h-4" />
-            </a>
-          </div>
-        </motion.div>
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
-          <img src="https://images.unsplash.com/photo-1600880292089-90e7e86d868b?q=80&w=1400&auto=format&fit=crop" alt="Community service" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent" />
-        </div>
-      </div>
-    </Container>
-  </Section>
-);
-
-const About = () => (
-  <Section id="about">
-    <Container>
-      <div className="grid md:grid-cols-2 gap-10 items-start">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Our Mission</h2>
-          <p className="mt-4 text-slate-700 leading-relaxed">
-            We exist to meet urgent needs and build long‑term opportunity in Rochester and surrounding communities.
-          </p>
-          <ul className="mt-6 space-y-3 text-slate-700">
-            <li className="flex items-start gap-3"><HeartHandshake className="w-5 h-5 mt-0.5 text-sky-600" /> Collaborative partnerships with small businesses, schools, and first responders.</li>
-            <li className="flex items-start gap-3"><Users className="w-5 h-5 mt-0.5 text-sky-600" /> Volunteer‑powered activations designed for measurable impact.</li>
-            <li className="flex items-start gap-3"><Megaphone className="w-5 h-5 mt-0.5 text-sky-600" /> A clear voice for equity, access, and neighbor‑to‑neighbor care.</li>
-          </ul>
-        </div>
-        <Card className="rounded-3xl">
-          <CardHeader><CardTitle>Guiding Values</CardTitle></CardHeader>
-          <CardContent className="grid md:grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-slate-50 border"><div className="font-semibold">Dignity</div><div className="text-sm text-slate-700 mt-1">Every person matters—full stop.</div></div>
-            <div className="p-4 rounded-2xl bg-slate-50 border"><div className="font-semibold">Action</div><div className="text-sm text-slate-700 mt-1">We move fast and follow through.</div></div>
-            <div className="p-4 rounded-2xl bg-slate-50 border"><div className="font-semibold">Trust</div><div className="text-sm text-slate-700 mt-1">We steward gifts well.</div></div>
-            <div className="p-4 rounded-2xl bg-slate-50 border"><div className="font-semibold">Joy</div><div className="text-sm text-slate-700 mt-1">Service should feel hopeful and welcoming.</div></div>
-          </CardContent>
-        </Card>
-      </div>
-    </Container>
-  </Section>
-);
-
-const Events = () => (
-  <Section id="events">
-    <Container>
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Upcoming Events</h2>
-      </div>
-      <div className="mt-8 grid md:grid-cols-2 gap-5">
-        <Card className="rounded-3xl">
-          <CardHeader><CardTitle className="text-xl">Angel Tree Gift Giveaway</CardTitle></CardHeader>
-          <CardContent className="space-y-2 text-slate-700">
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              <span className="inline-flex items-center"><Calendar className="w-4 h-4 mr-1" />Dec 18, 2025 • 5:00–7:00 PM</span>
-              <span className="inline-flex items-center"><MapPin className="w-4 h-4 mr-1" />Rochester, NY</span>
-            </div>
-            <p className="text-sm">Toys for local kids ages 6–12 with support from local law enforcement.</p>
-          </CardContent>
-        </Card>
-        <Card className="rounded-3xl">
-          <CardHeader><CardTitle className="text-xl">Winter Coat & Pantry Drive</CardTitle></CardHeader>
-          <CardContent className="space-y-2 text-slate-700">
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              <span className="inline-flex items-center"><Calendar className="w-4 h-4 mr-1" />Jan 11, 2026 • 10:00 AM–1:00 PM</span>
-              <span className="inline-flex items-center"><MapPin className="w-4 h-4 mr-1" />Rochester, NY</span>
-            </div>
-            <p className="text-sm">Donate new/gently used coats and shelf‑stable items to keep families warm and fed.</p>
-          </CardContent>
-        </Card>
-      </div>
-    </Container>
-  </Section>
-);
-
-const Volunteer = () => (
-  <Section id="volunteer" bg="bg-gradient-to-b from-white to-slate-50">
-    <Container>
-      <div className="grid lg:grid-cols-3 gap-8 items-center">
-        <div className="lg:col-span-2">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Volunteer with Us</h2>
-          <p className="mt-4 text-slate-700 max-w-2xl">Individuals, families, schools, and corporate teams welcome.</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#contact"><Button className="rounded-2xl">Sign Up</Button></a>
-            <a href="#contact"><Button variant="outline" className="rounded-2xl">Group Inquiry</Button></a>
-          </div>
-        </div>
-        <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
-          <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop" alt="Volunteers" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-        </div>
-      </div>
-    </Container>
-  </Section>
-);
-
-const Donate = () => (
-  <Section id="donate" bg="bg-slate-50">
-    <Container>
-      <div className="flex items-end justify-between flex-wrap gap-4">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Fuel the Mission</h2>
-          <p className="mt-3 text-slate-700 max-w-2xl">Every dollar stays local and powers hands‑on work.</p>
-        </div>
-      </div>
-      <Card className="mt-6 rounded-3xl">
-        <CardContent className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <HandCoins className="w-6 h-6 text-green-600" />
-            <div>
-              <div className="font-semibold">Other ways to give</div>
-              <p className="text-sm text-slate-700">In‑kind donations, corporate matches, and scholarships welcome.</p>
-            </div>
-          </div>
-          <a href="#contact"><Button variant="outline" className="rounded-2xl">Contact Us</Button></a>
-        </CardContent>
-      </Card>
-    </Container>
-  </Section>
-);
-
-const Contact = () => (
-  <Section id="contact" bg="bg-slate-50">
-    <Container>
-      <div className="grid lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Get in Touch</h2>
-          <form className="mt-6 grid md:grid-cols-2 gap-4" onSubmit={(e) => e.preventDefault()}>
-            <Input aria-label="Full name" placeholder="Full name" required />
-            <Input aria-label="Email" type="email" placeholder="Email" required />
-            <Input aria-label="Phone" type="tel" placeholder="Phone (optional)" className="md:col-span-2" />
-            <Textarea aria-label="Message" placeholder="How can we help?" className="md:col-span-2" required />
-            <div className="md:col-span-2"><Button className="rounded-2xl" type="submit">Send Message</Button></div>
-          </form>
-        </div>
-        <Card className="rounded-3xl">
-          <CardContent className="p-6 space-y-3">
-            <div className="font-semibold">Contact Details</div>
-            <div className="text-sm text-slate-700 flex items-center"><Phone className="w-4 h-4 mr-2" /> (585) 200-1364</div>
-            <div className="text-sm text-slate-700 flex items-center"><Mail className="w-4 h-4 mr-2" /> (Add your email)</div>
-            <div className="text-sm text-slate-700 flex items-center"><MapPin className="w-4 h-4 mr-2" /> Rochester, NY</div>
-          </CardContent>
-        </Card>
-      </div>
-    </Container>
-  </Section>
-);
-
-const Footer = () => (
-  <footer className="bg-white border-t">
-    <Container>
-      <div className="py-10 grid md:grid-cols-2 gap-6 items-center">
-        <div>
-          <div className="font-extrabold text-xl">{BRAND.name}</div>
-          <div className="text-sm text-slate-600">{BRAND.tagline}</div>
-        </div>
-        <div className="flex items-center gap-3 md:justify-end">
-          <a className="p-2 rounded-xl hover:bg-slate-100" href="#" aria-label="Facebook"><Facebook className="w-5 h-5" /></a>
-          <a className="p-2 rounded-xl hover:bg-slate-100" href="#" aria-label="Instagram"><Instagram className="w-5 h-5" /></a>
-          <a className="p-2 rounded-xl hover:bg-slate-100" href="#" aria-label="LinkedIn"><Linkedin className="w-5 h-5" /></a>
-        </div>
-      </div>
-      <div className="py-6 text-xs text-slate-500 border-t flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-        <div>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</div>
-        <div className="space-x-4">
-          <a href="#about" className="hover:underline">About</a>
-          <a href="#contact" className="hover:underline">Contact</a>
-          <a href="#donate" className="hover:underline">Donate</a>
-        </div>
-      </div>
-    </Container>
-  </footer>
-);
-
-export default function Page() {
+export default function HomePage() {
   return (
-    <div className="font-sans">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Events />
-        <Volunteer />
-        <Donate />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <main className="min-h-screen bg-slate-950 text-slate-50">
+      {/* HERO */}
+      <section className="border-b border-slate-800 bg-gradient-to-b from-slate-950 to-slate-900">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-16 md:flex-row md:items-center md:py-24">
+          <div className="space-y-6 md:flex-1">
+            <p className="text-sm font-semibold tracking-[0.2em] text-emerald-400 uppercase">
+              Service the Community Inc.
+            </p>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              Serving families,{" "}
+              <span className="text-emerald-400">one neighborhood</span> at a
+              time.
+            </h1>
+            <p className="max-w-xl text-base text-slate-300 sm:text-lg">
+              We partner with residents, local businesses, and first responders
+              to provide events, resources, and support for families in
+              Rochester and the surrounding communities.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#events"
+                className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-md shadow-emerald-500/30 transition hover:bg-emerald-400"
+              >
+                View Upcoming Events
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-2xl border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-50 hover:border-emerald-400 hover:text-emerald-300"
+              >
+                Partner With Us
+              </a>
+            </div>
+
+            <div className="flex flex-wrap gap-8 pt-4 text-sm text-slate-400">
+              <div>
+                <p className="font-semibold text-slate-200">
+                  Community-first mission
+                </p>
+                <p>Focused on dignity, respect, and opportunity.</p>
+              </div>
+              <div>
+                <p className="font-semibold text-slate-200">
+                  Local collaboration
+                </p>
+                <p>Working alongside schools, churches, and businesses.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="md:flex-1">
+            <div className="mx-auto max-w-md rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-slate-900/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+                Our pillars
+              </p>
+              <div className="mt-4 grid gap-4 text-sm text-slate-200">
+                <div>
+                  <p className="font-semibold text-emerald-400">Action</p>
+                  <p className="text-slate-400">
+                    We don’t just talk about change — we show up and serve.
+                  </p>
+                </div>
+                <div>
+                  <p className="font-semibold text-emerald-400">Trust</p>
+                  <p className="text-slate-400">
+                    Built through consistency, transparency, and follow-through.
+                  </p>
+                </div>
+                <div>
+                  <p className="font-semibold text-emerald-400">Joy</p>
+                  <p className="text-slate-400">
+                    Every event is designed to bring hope, dignity, and
+                    connection.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MISSION */}
+      <section className="border-b border-slate-800 bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="grid gap-10 md:grid-cols-2 md:items-start">
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our mission
+              </h2>
+              <p className="text-slate-300">
+                Service the Community Inc. exists to bridge gaps for families
+                facing financial, emotional, and social challenges. We create
+                safe spaces where people can receive resources, encouragement,
+                and connection.
+              </p>
+              <p className="text-slate-400">
+                From holiday outreaches to school-year support, we believe every
+                child and every family deserves to be seen, heard, and cared
+                for.
+              </p>
+            </div>
+
+            <div className="grid gap-6 text-sm sm:grid-cols-3">
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+                <HeartHandshake className="mb-2 h-6 w-6 text-emerald-400" />
+                <p className="font-semibold text-slate-100">Family Support</p>
+                <p className="mt-1 text-slate-400">
+                  Events and resources that meet practical needs with dignity.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+                <Users className="mb-2 h-6 w-6 text-emerald-400" />
+                <p className="font-semibold text-slate-100">Community Voice</p>
+                <p className="mt-1 text-slate-400">
+                  Led by people who live, work, and worship in the community.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 sm:col-span-1 sm:row-span-2">
+                <Calendar className="mb-2 h-6 w-6 text-emerald-400" />
+                <p className="font-semibold text-slate-100">
+                  Year-round outreach
+                </p>
+                <p className="mt-1 text-slate-400">
+                  Holiday events, school-support drives, and partnerships with
+                  local organizations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EVENTS */}
+      <section id="events" className="border-b border-slate-800 bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Upcoming Events
+              </h2>
+              <p className="mt-2 text-slate-300">
+                Join us as we serve families and neighborhoods across Rochester.
+              </p>
+            </div>
+            <span className="hidden rounded-full border border-emerald-500/30 px-4 py-1 text-xs font-medium text-emerald-300 md:inline">
+              Open to the community
+            </span>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {events.map((event) => (
+              <div
+                key={event.title}
+                className="flex h-full flex-col justify-between rounded-3xl border border-slate-800 bg-slate-900/70 p-5"
+              >
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-slate-50">
+                    {event.title}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="h-4 w-4 text-emerald-400" />
+                      {event.date}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <MapPin className="h-4 w-4 text-emerald-400" />
+                      {event.location}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300">{event.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VOLUNTEER */}
+      <section
+        id="volunteer"
+        className="border-b border-slate-800 bg-gradient-to-b from-slate-950 to-slate-900"
+      >
+        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="grid gap-10 md:grid-cols-3 md:items-center">
+            <div className="md:col-span-2 space-y-4">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Volunteer with Us
+              </h2>
+              <p className="text-slate-300">
+                Individuals, families, schools, churches, and corporate teams
+                are all welcome. Whether you can give an afternoon or a full
+                season, there’s a place for you.
+              </p>
+              <p className="text-slate-400">
+                Volunteers help with setup, hospitality, registration, youth
+                engagement, distribution, and follow-up support.
+              </p>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-md shadow-emerald-500/30 transition hover:bg-emerald-400"
+              >
+                Sign Up to Volunteer
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="space-y-3 rounded-3xl border border-slate-800 bg-slate-900/70 p-5 text-sm text-slate-300">
+              <p className="font-semibold text-slate-100">
+                Volunteer opportunities include:
+              </p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Event setup & cleanup</li>
+                <li>Food and gift distribution</li>
+                <li>Greeters & hospitality</li>
+                <li>Youth & activity support</li>
+                <li>Community outreach & follow-up</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section
+        id="contact"
+        className="bg-slate-950 py-16 md:py-20 border-t border-slate-800"
+      >
+        <div className="mx-auto max-w-4xl px-4">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Contact & Partnerships
+          </h2>
+          <p className="mt-2 text-slate-300">
+            Want to host an event, sponsor a program, or learn more about
+            Service the Community Inc.? We’d love to connect.
+          </p>
+
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
+            <div className="space-y-3 text-sm text-slate-300">
+              <p className="font-semibold text-slate-100">Get in touch</p>
+              <p>Use the email or phone below and our team will follow up.</p>
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-emerald-400" />
+                  <span>(555) 555-5555</span>
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-emerald-400" />
+                  <span>info@servicethecommunity.org</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3 text-sm text-slate-300">
+              <p className="font-semibold text-slate-100">Partner with us</p>
+              <p>
+                We welcome collaboration with local businesses, schools,
+                churches, law-enforcement, and civic organizations who want to
+                serve families in practical ways.
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-10 text-center text-xs text-slate-500">
+            © {new Date().getFullYear()} Service the Community Inc. All rights
+            reserved.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
