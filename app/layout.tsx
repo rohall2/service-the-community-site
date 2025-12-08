@@ -1,8 +1,9 @@
 // app/layout.tsx
-import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Link from "next/link";
+import { Inter } from "next/font/google";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ function Header() {
           >
             Home
           </Link>
+
           <Link
             href="/#events"
             className="hidden rounded-full px-3 py-1 hover:bg-slate-900/70 sm:inline-flex"
