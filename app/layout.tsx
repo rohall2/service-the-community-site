@@ -1,4 +1,4 @@
-// app/layout.tsx
+this is what I see. Create a clean code that I can copy and paste // app/layout.tsx
 
 import "./globals.css";
 import type { Metadata } from "next";
