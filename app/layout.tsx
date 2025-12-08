@@ -1,24 +1,27 @@
-// app/layout.tsx
 import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Link from "next/link";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+});
 
-export const metadata: Metadata = {
+// ---------- Metadata ----------
+export const metadata = {
   title: "Service the Community",
   description:
     "Service the Community partners with Rochester neighborhoods to support children and families through outreach events, resources and connection.",
 };
 
+// ---------- Header Component ----------
 function Header() {
   return (
     <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        
         {/* Brand */}
         <Link href="/" className="flex flex-col">
-          <span className="text-sm font-semibold text-emerald-200">
+          <span className="text-sm font-semibold text-emerald-300">
             Service the Community
           </span>
           <span className="text-[11px] text-slate-400">
@@ -26,26 +29,26 @@ function Header() {
           </span>
         </Link>
 
-        {/* Nav links */}
+        {/* Navigation */}
         <nav className="flex items-center gap-4 text-xs font-semibold text-slate-200">
           <Link
             href="/"
-            className="rounded-full px-3 py-1 hover:bg-slate-900/70 transition"
+            className="rounded-full px-3 py-1 hover:bg-slate-900/70"
           >
             Home
           </Link>
 
           <Link
-            href="#events"
-            className="hidden rounded-full px-3 py-1 hover:bg-slate-900/70 sm:inline-flex transition"
+            href="/#events"
+            className="hidden rounded-full px-3 py-1 hover:bg-slate-900/70 sm:inline-flex"
           >
             Events
           </Link>
 
-          {/* Donate button */}
+          {/* Donate Button */}
           <Link
             href="/donate"
-            className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-semibold text-slate-950 shadow-sm shadow-emerald-500/30 transition hover:bg-emerald-400"
+            className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-semibold text-slate-950 shadow-sm shadow-emerald-500/40 transition hover:bg-emerald-400"
           >
             Donate
           </Link>
@@ -55,11 +58,8 @@ function Header() {
   );
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// ---------- Root Layout ----------
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
