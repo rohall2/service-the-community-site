@@ -1,9 +1,8 @@
 // app/layout.tsx
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Inter } from "next/font/google";
-
 import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,19 +30,19 @@ function Header() {
         <nav className="flex items-center gap-4 text-xs font-semibold text-slate-200">
           <Link
             href="/"
-            className="rounded-full px-3 py-1 hover:bg-slate-900/70"
+            className="rounded-full px-3 py-1 hover:bg-slate-900/70 transition"
           >
             Home
           </Link>
 
           <Link
-            href="/#events"
-            className="hidden rounded-full px-3 py-1 hover:bg-slate-900/70 sm:inline-flex"
+            href="#events"
+            className="hidden rounded-full px-3 py-1 hover:bg-slate-900/70 sm:inline-flex transition"
           >
             Events
           </Link>
 
-          {/* Donate button in nav */}
+          {/* Donate button */}
           <Link
             href="/donate"
             className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-semibold text-slate-950 shadow-sm shadow-emerald-500/30 transition hover:bg-emerald-400"
