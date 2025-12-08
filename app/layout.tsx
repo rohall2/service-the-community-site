@@ -1,8 +1,10 @@
+// app/layout.tsx
+
 import "./globals.css";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +13,8 @@ export const metadata: Metadata = {
   description:
     "Service the Community partners with Rochester neighborhoods to support children and families through outreach events, resources and connection.",
 };
+
+// ---------- Header Component ----------
 
 function Header() {
   return (
@@ -54,6 +58,8 @@ function Header() {
     </header>
   );
 }
+
+// ---------- Root Layout ----------
 
 export default function RootLayout({
   children,
